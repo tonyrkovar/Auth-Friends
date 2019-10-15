@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { tsPropertySignature } from '@babel/types';
 
-export const Login = () => {
+export const Login = ({ history }) => {
     const initialCredentials = {
         username: '',
         password: ''
@@ -24,6 +25,7 @@ export const Login = () => {
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.payload)
+                history.push('/friends')
             })
             .catch(err => console.log('There was an error:', err.response))
     }

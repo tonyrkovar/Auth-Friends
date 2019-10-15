@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { DisplayFriends } from './DisplayFriends';
 
@@ -20,6 +21,7 @@ export const Friends = () => {
                 )
             })}
             <p>Friends Inc</p>
+            <Link to='/addfriend'>Add a Friend</Link>
         </div>
 
     )
