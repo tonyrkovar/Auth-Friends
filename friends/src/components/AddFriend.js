@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { addFriend } from '../services/addFriend';
+import { addFriend } from '../actions';
+import { useDispatch, useSelector } from 'react-redux'
 
 export const AddFriend = () => {
+    // const friend = 
+    const dispatch = useDispatch();
     const initialValue = {
         name: '',
         age: '',
@@ -23,7 +26,7 @@ export const AddFriend = () => {
         <div>
             <form onSubmit={e => {
                 e.preventDefault()
-                addFriend(friend)
+                dispatch(addFriend(friend))
                 setFriend(initialValue)
             }}>
                 <input

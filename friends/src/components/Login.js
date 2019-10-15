@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { tsPropertySignature } from '@babel/types';
 
 export const Login = ({ history }) => {
     const initialCredentials = {

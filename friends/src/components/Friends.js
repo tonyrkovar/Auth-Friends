@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 
 import { DisplayFriends } from './DisplayFriends';
 
-import { getData } from '../services/getData'
+import { getData } from '../actions'
 
 
 export const Friends = () => {
-    const [friends, setFriends] = useState([])
+    const friends = useSelector(state => state.friends);
+    const loading = useSelector(state => state.isFetching);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getData().then(res => setFriends(res.data))
-    }, [friends])
+        dispatch(getData())
+    }, [])
+
+    if (loading) {
+        return <h2>LOADING FRIENDS</h2>
+    }
 
     return (
         <div>
@@ -20,9 +27,7 @@ export const Friends = () => {
                     <DisplayFriends friends={friend} />
                 )
             })}
-            <p>Friends Inc</p>
             <Link to='/addfriend'>Add a Friend</Link>
         </div>
-
     )
 }
